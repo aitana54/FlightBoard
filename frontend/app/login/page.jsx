@@ -26,4 +26,12 @@ export default function Login() {
       token: data.token
     });
   };
+
+  return (
+    <div>
+      <input onchange={e => setEmail(e.target.value)} />
+      <input onchange={e => setPassword(e.target.value)} />
+      <button onClick={handleLogin}>Login</button>
+    </div>
+  );
 }
