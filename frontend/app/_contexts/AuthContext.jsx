@@ -25,3 +25,14 @@ function reducer(state, action) {
       return state;
   }
 }
+
+export function AuthProvider({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <AuthContext.Provider value={{ ...state, dispatch }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
