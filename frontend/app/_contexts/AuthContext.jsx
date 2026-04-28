@@ -1,5 +1,5 @@
 "use client";
-import { createContext } from "react";
+import { createContext, useReducer, useContext } from "react";
 
 
 const AuthContext = createContext;
@@ -10,3 +10,18 @@ const initialState = {
   token: null,
 };
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "LOGIN_SUCCESS":
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload.user,
+        token: action.payload.token,
+      };
+    case "LOGOUT":
+      return initialState;
+    default:
+      return state;
+  }
+}
