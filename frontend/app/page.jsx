@@ -14,3 +14,8 @@ async function getFlights() {
 
   return res.json();
 }
+
+
+export default async function Page() {
+  const flights = await getFlights();
+}
