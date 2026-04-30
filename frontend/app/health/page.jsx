@@ -1,5 +1,5 @@
 const API_BASE =
-  process.env.API_BASE_URL ?? // p.ej. "http://host.docker.internal:4000" si usas Docker
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? // p.ej. "http://host.docker.internal:4000" si usas Docker
   'http://127.0.0.1:4000';
 
 async function getHealth() {
