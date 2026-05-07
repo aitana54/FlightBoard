@@ -11,3 +11,7 @@ async function getFlight(id) {
 
   return res.json();
 }
+
+export default async function FlightPage({ params }) {
+  const flight = await getFlight(params.id);
+}
