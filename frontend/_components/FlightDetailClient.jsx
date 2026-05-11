@@ -88,6 +88,27 @@ export default function FlightDetailClient({ flight }) {
           <strong>Status:</strong> {flight.status}
         </p>
       </div>
+
+      {isAuthenticated && (
+        <div className="mt-6 space-y-4">
+          <input
+            value={origin}
+            onChange={(e) => setOrigin(e.target.value)}
+            className="border p-2"
+          />
+          <input
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+            className="border p-2"
+          />
+
+          <input
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="border p-2"
+          />
+        </div>
+      )}
     </main>
   );
 }
