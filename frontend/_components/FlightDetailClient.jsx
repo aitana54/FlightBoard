@@ -67,9 +67,9 @@ export default function FlightDetailClient({ flight }) {
       alert("Vuelo eliminado correctamente");
       router.push("/");
     } catch (err) {
-
+      setError(err.message);
     } finally {
-
+      setLoading(false);
     }
   };
 }
