@@ -45,4 +45,14 @@ export default function FlightDetailClient({ flight }) {
       setLoading(false);
     }
   };
+
+  const handleDelete = async () => {
+    try {
+
+    } catch (err) {
+
+    } finally {
+
+    }
+  };
 }
