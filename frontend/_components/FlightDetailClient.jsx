@@ -75,7 +75,19 @@ export default function FlightDetailClient({ flight }) {
 
   return (
     <main className="p-6">
-      <h1>Detalles del vuelo</h1>
+      <h1 className="text-2xl font-bold mb-4">Detalles del vuelo</h1>
+
+      <div className="space-y-2">
+        <p>
+          <strong>Origen:</strong> {flight.origin}
+        </p>
+        <p>
+          <strong>Destino:</strong> {flight.destination}
+        </p>
+        <p>
+          <strong>Status:</strong> {flight.status}
+        </p>
+      </div>
     </main>
   );
 }
