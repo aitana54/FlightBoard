@@ -1,5 +1,5 @@
-
-export const revalidate = 60;
+import FlightsListClient from "../_components/FlightsListClient";
+//export const revalidate = 60;
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://127.0.0.1:4000';
 
@@ -17,5 +17,14 @@ async function getFlights() {
 
 
 export default async function Page() {
-  const flights = await getFlights();
+  const response = await getFlights();
+  const flights = response.data;
+
+   return (
+    <main style={{ padding: 20 }}>
+      <h1>FlightBoard</h1>
+
+      <FlightsListClient initialFlights={flights} />
+    </main>
+  );
 }

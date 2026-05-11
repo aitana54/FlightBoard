@@ -2,7 +2,7 @@
 import { createContext, useReducer, useContext } from "react";
 
 
-const AuthContext = createContext;
+const AuthContext = createContext();
 
 const initialState = {
   isAuthenticated: false,
@@ -36,4 +36,6 @@ export function AuthProvider({ children }) {
   );
 }
 
-export const useAuth = () => useContext(AuthContext);
+export function useAuth(){
+  return useContext(AuthContext);
+}

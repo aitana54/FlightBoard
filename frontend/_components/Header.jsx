@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@/_contexts/AuthContext";
+import { useAuth } from "../_contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
