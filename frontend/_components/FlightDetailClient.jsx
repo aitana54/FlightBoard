@@ -18,5 +18,13 @@ export default function FlightDetailClient({ flight }) {
   const [ loading, setLoading ] = useState(false);
   const [ error, setError ] = useState("");
 
+  const handleUpdate = async () => {
+    try {
 
+    } catch (err) {
+
+    } finally {
+
+    }
+  }
 }
