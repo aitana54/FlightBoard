@@ -48,7 +48,24 @@ export default function FlightDetailClient({ flight }) {
 
   const handleDelete = async () => {
     try {
+      setLoading(true);
 
+      const res = await fetch(
+        `${API}/api/v1/flights/${flight.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Error eliminando el vuelo");
+      }
+
+      alert("Vuelo eliminado correctamente");
+      router.push("/");
     } catch (err) {
 
     } finally {
