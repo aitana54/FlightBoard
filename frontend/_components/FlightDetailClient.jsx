@@ -107,6 +107,16 @@ export default function FlightDetailClient({ flight }) {
             onChange={(e) => setStatus(e.target.value)}
             className="border p-2"
           />
+
+          <div className= "flex gap-4">
+            <button
+            onclick={handleUpdate}
+            className="bg-blue-500 text-white px-4 py-2">
+              Actualizar
+            </button>
+
+
+          </div>
         </div>
       )}
     </main>
