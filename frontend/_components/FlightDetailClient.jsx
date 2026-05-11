@@ -40,7 +40,7 @@ export default function FlightDetailClient({ flight }) {
 
       alert("Vuelo actualizado correctamente");
     } catch (err) {
-
+      setError(err.message);
     } finally {
 
     }
