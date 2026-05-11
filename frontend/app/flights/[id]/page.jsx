@@ -1,3 +1,5 @@
+import FlightDetailClient from "@/_components/FlightDetailClient";
+
 const API = process.env.NEXT_PUBLIC_API_BASE_URL ??
 "http://127.0.0.1:4000";
 
@@ -14,4 +16,6 @@ async function getFlight(id) {
 
 export default async function FlightPage({ params }) {
   const flight = await getFlight(params.id);
+
+  return <FlightDetailClient flight={flight} />;
 }
