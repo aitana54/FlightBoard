@@ -72,4 +72,10 @@ export default function FlightDetailClient({ flight }) {
       setLoading(false);
     }
   };
+
+  return (
+    <main className="p-6">
+      <h1>Detalles del vuelo</h1>
+    </main>
+  );
 }
