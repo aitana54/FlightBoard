@@ -124,6 +124,12 @@ export default function FlightDetailClient({ flight }) {
           </div>
         </div>
       )}
+
+      {loading && <p>Cargando...</p>}
+
+      {error && (
+        <p className="text-red-500">{error}</p>
+      )}
     </main>
   );
 }
