@@ -42,7 +42,7 @@ export default function FlightDetailClient({ flight }) {
     } catch (err) {
       setError(err.message);
     } finally {
-
+      setLoading(false);
     }
   }
 }
