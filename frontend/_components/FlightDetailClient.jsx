@@ -20,7 +20,25 @@ export default function FlightDetailClient({ flight }) {
 
   const handleUpdate = async () => {
     try {
+      setLoading(true);
 
+      const res = await fetch(
+        `${API}/api/v1/flights/${flight.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({ origin, destination, status })
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Error actualizando el vuelo");
+      }
+
+      alert("Vuelo actualizado correctamente");
     } catch (err) {
 
     } finally {
