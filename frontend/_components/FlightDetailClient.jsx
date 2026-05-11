@@ -110,12 +110,17 @@ export default function FlightDetailClient({ flight }) {
 
           <div className= "flex gap-4">
             <button
-            onclick={handleUpdate}
+            onClick={handleUpdate}
             className="bg-blue-500 text-white px-4 py-2">
               Actualizar
             </button>
 
-
+            <button
+            onClick={handleDelete}
+            className="bg-red-500 text-white px-4 py-2"
+            >
+              Eliminar
+            </button>
           </div>
         </div>
       )}
