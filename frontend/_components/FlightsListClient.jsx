@@ -34,11 +34,6 @@ export default function FlightsListClient({ initialFlights }) {
 
   return (
     <main className="p-6">
-      <h1 className="text-3xl font-bold mb-6">
-        Vuelos
-      </h1>
-
-      {/* filtros */}
       <div className="flex gap-4 mb-6">
         <input
           type="text"
@@ -65,42 +60,42 @@ export default function FlightsListClient({ initialFlights }) {
         />
       </div>
 
-      {/* estados */}
-      {loading && <p>Buscando...</p>}
-      {error && <p className="text-red-500">{error}</p>}
 
-      {/* lista */}
       <div className="space-y-4">
-        {filteredFlights.length === 0 && !loading && (
-          <p>No hay vuelos</p>
-        )}
-
-        {filteredFlights.map((flight) => (
-          <div
-            key={flight.id}
-            className="border rounded p-4 shadow"
-          >
-            <h2 className="text-xl font-bold">
-              {flight.origin} → {flight.destination}
-            </h2>
-
-            <p>Estado: {flight.status}</p>
-
-            <p>
-              Salida:{" "}
-              {isMounted && flight.time_departure
-                ? new Date(flight.time_departure).toLocaleString("es-ES")
-                : "N/A"}
-            </p>
-
-            <Link
-              href={`/flights/${flight.id}`}
-              className="text-blue-500 underline"
+        {filteredFlights.map(
+          (flight) => (
+            <div
+              key={flight.id}
+              className="border rounded p-4 shadow"
             >
-              Ver detalle
-            </Link>
-          </div>
-        ))}
+              <h2 className="text-xl font-bold">
+                {flight.origin} →{" "}
+                {
+                  flight.destination
+                }
+              </h2>
+
+              <p>
+                Estado:{" "}
+                {flight.status}
+              </p>
+
+              <p>
+                Salida:{" "}
+                {
+                  flight.time_departure
+                }
+              </p>
+
+              <Link
+                href={`/flights/${flight.id}`}
+                className="text-blue-500 underline"
+              >
+                Ver detalle
+              </Link>
+            </div>
+          )
+        )}
       </div>
     </main>
   );
