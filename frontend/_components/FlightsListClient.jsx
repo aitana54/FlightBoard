@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 
 const API =
@@ -8,46 +8,29 @@ const API =
   "http://127.0.0.1:4000";
 
 export default function FlightsListClient({ initialFlights }) {
-  // 🔥 siempre array (evita crashes)
-  const [flights, setFlights] = useState(initialFlights ?? []);
 
   const [search, setSearch] = useState("");
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [isMounted, setIsMounted] = useState(false);
 
-useEffect(() => {
-  setIsMounted(true);
-}, []);
-
-
-  // 🔥 filtrado seguro (SIN crashes)
   const filteredFlights = useMemo(() => {
-    const safeFlights = Array.isArray(flights) ? flights : [];
+    const safeFlights = Array.isArray(initialFlights) ? initialFlights : [];
 
     return safeFlights.filter((flight) => {
-      const originText = flight.origin?.toLowerCase() || "";
-      const destinationText = flight.destination?.toLowerCase() || "";
-      const searchText = search.toLowerCase();
-      const originFilter = origin.toLowerCase();
-      const destinationFilter = destination.toLowerCase();
 
-      const matchesSearch =
-        originText.includes(searchText) ||
-        destinationText.includes(searchText);
+      const matchesSearch = flight.origin.toLowerCase().includes(search.toLowerCase()) ||
+        flight.destination.toLowerCase().includes(search.toLowerCase());
 
       const matchesOrigin =
-        origin === "" || originText.includes(originFilter);
+        origin === "" || flight.origin.toLowerCase().includes(origin.toLowerCase());
 
       const matchesDestination =
-        destination === "" || destinationText.includes(destinationFilter);
+        destination === "" || flight.destination.toLowerCase().includes(destination.toLowerCase());
 
       return matchesSearch && matchesOrigin && matchesDestination;
     });
-  }, [flights, search, origin, destination]);
+  }, [initialFlights, search, origin, destination]);
 
   return (
     <main className="p-6">
