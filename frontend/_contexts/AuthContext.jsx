@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useReducer, useContext } from "react";
+import { createContext, useReducer, useContext, useEffect } from "react";
 
 
 const AuthContext = createContext();
@@ -28,6 +28,18 @@ function reducer(state, action) {
 
 export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (token && user) {
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: { user, token },
+      });
+    }
+  }, []);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
