@@ -9,13 +9,13 @@ async function getFlights() {
     next: { revalidate: 60 },
   });
 
-  if (!res.ok) {
-    throw new Error('Error al obtener los vuelos');
-  }
-
   const data = await res.json();
 
-  return data.data;
+  if (!res.ok) {
+    throw new Error(data.message || 'Error al obtener los vuelos');
+  }
+
+  return data.data || data;
 }
 
 
