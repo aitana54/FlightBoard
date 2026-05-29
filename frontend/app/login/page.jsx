@@ -59,37 +59,35 @@ export default function Login() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center">
+    <main className="min-h-screen flex-center justify-center">
       <form
-      onSubmit={handleLogin}
-      className = "border p-6 reounded w-full max-w-sm flex flex-col gap-4">
-      <h1 className="text-2xl font-bold">Login</h1>
+        onSubmit={handleLogin}
+        className="border p-6 rounded w-full max-w-sm flex flex-col gap-4"
+      >
+        <h1 className="text-2xl font-bold">Login</h1>
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="border p-2"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="border p-2"
-      />
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-blue-500 text-white p-2">
-        {loading ? "Entrando..." : "Login"}
-      </button>
-      {error && (
-        <p className="text-red-500">
-          {error}
-        </p>
-      )}
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="border p-2"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="border p-2"
+        />
+        <button type="submit" className="bg-blue-500 text-white p-2">
+          {loading ? "Entrando..." : "Login"}
+        </button>
+        {error && (
+          <p className="text-red-500">
+            {error}
+          </p>
+        )}
       </form>
     </main>
   );
