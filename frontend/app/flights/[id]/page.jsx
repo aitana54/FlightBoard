@@ -12,15 +12,16 @@ async function getFlight(id) {
     }
   );
 
+  const data = await res.json();
+
+
   if (!res.ok) {
     throw new Error(
-      "Error al obtener el vuelo"
+      data.message || "Error al obtener el vuelo"
     );
   }
 
-  const data = await res.json();
-
-  return data.data;
+  return data.data || data;
 }
 
 export default async function FlightPage({
