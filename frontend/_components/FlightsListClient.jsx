@@ -15,7 +15,11 @@ export default function FlightsListClient({ initialFlights }) {
 
 
   const filteredFlights = useMemo(() => {
-    const safeFlights = Array.isArray(initialFlights) ? initialFlights : [];
+    const safeFlights = Array.isArray(initialFlights) ? initialFlights.map((flight) => ({
+      ...flight,
+      id: flight.id || flight._id,
+      }))
+    : [];
 
     return safeFlights.filter((flight) => {
 
