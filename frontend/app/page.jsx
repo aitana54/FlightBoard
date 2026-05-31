@@ -1,3 +1,4 @@
+import FlightsListClient from "../_components/FlightsListClient";
 
 export const revalidate = 60;
 
@@ -8,14 +9,25 @@ async function getFlights() {
     next: { revalidate: 60 },
   });
 
+  const data = await res.json();
+
   if (!res.ok) {
-    throw new Error('Error al obtener los vuelos');
+    throw new Error(data.message || 'Error al obtener los vuelos');
   }
 
-  return res.json();
+  return data.data || data;
 }
 
 
 export default async function Page() {
   const flights = await getFlights();
+
+
+   return (
+    <main className="p-6">
+      <h1 className="text-3xl font-bold mb-6">FlightBoard</h1>
+
+      <FlightsListClient initialFlights={flights} />
+    </main>
+  );
 }
