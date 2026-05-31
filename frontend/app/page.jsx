@@ -24,8 +24,8 @@ export default async function Page() {
 
 
    return (
-    <main style={{ padding: 20 }}>
-      <h1>FlightBoard</h1>
+    <main className="p-6">
+      <h1 className="text-3xl font-bold mb-6">FlightBoard</h1>
 
       <FlightsListClient initialFlights={flights} />
     </main>
