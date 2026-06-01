@@ -58,4 +58,58 @@ export default function RegisterForm() {
       setLoading(false);
     }
   };
+
+  return (
+    <form onSubmit={handleSubmit}
+      className="flex flex-col gap-4 max-w-md"
+    >
+      <input
+        type="text"
+        name="name"
+        placeholder="Nombre"
+        value={form.name}
+        onChange={handleChange}
+        className="border p-2"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={form.email}
+        onChange={handleChange}
+        className="border p-2"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Contraseña"
+        value={form.password}
+        onChange={handleChange}
+        className="border p-2"
+        required
+      />
+      <input
+        type="date"
+        name="birthday"
+        placeholder="Fecha de nacimiento"
+        value={form.birthday}
+        onChange={handleChange}
+        className="border p-2"
+        required
+      />
+      {error && (
+        <p className="text-red-500">{error}
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="borderp-2">
+        {loading ? "Registrando..." : "Registrarse"}
+      </button>
+    </form>
+  );
 }
