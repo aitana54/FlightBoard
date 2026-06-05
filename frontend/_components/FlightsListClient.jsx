@@ -4,8 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 
 const API =
-  process.env.NEXT_PUBLIC_API_URL ??
-  "http://127.0.0.1:4000";
+  process.env.NEXT_PUBLIC_API_URL;
 
 export default function FlightsListClient({ initialFlights }) {
 

@@ -7,7 +7,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const API = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const API = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:4000';
 
   const handleLogin = async () => {
     const res = await fetch(`${API}/api/v1/auth/login`, {

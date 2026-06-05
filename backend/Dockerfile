@@ -1,7 +1,7 @@
-FROM node:20-alpine
+FROM node:22.13-alpine
 
 # Instalar pnpm globalmente
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9
 
 WORKDIR /app
 
