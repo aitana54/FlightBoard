@@ -69,3 +69,9 @@ Servicios disponibles:
 - Frontend: http://localhost:3000
 - Backend: http://localhost:4000
 - Mongo Express: http://localhost:8081
+
+### Uso de Inteligencia Artificial
+
+Durante el desarrollo de esta práctica se han utilizado herramientas de Inteligencia Artificial, principalmente Gemini, Chatgpt como apoyo para la comprensión de conceptos y la resolución de problemas técnicos y textos.
+
+La IA se ha empleado para consultar dudas relacionadas con React y Next.js, comprender mejor el funcionamiento de determinados componentes y hooks, así como para identificar errores, analizar mensajes de depuración y proponer posibles soluciones. También ha sido útil para resolver incidencias relacionadas con la configuración del entorno, las variables de entorno, la comunicación entre frontend y backend y el uso de Docker.
