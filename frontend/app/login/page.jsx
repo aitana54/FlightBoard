@@ -2,10 +2,6 @@
 
 import LoginForm from "@/_components/LoginForm";
 
-const API = process.env.NEXT_PUBLIC_API_URL ??
-"http://127.0.0.1:4000";
-
-
 export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center">
