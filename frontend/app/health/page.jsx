@@ -1,14 +1,12 @@
 import FlightsListClient from "../_components/FlightsListClient";
 export const revalidate = 60;
 
-const API =
-  process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:4000";
+const BACKEND_URL = "http://backend:4000";
 
-console.log(API);
+console.log(BACKEND_URL);
 
 async function getFlights() {
-  const res = await fetch(`${API}/api/v1/flights`, {
+  const res = await fetch(`${BACKEND_URL}/api/v1/flights`, {
     next: { revalidate: 60 },
   });
 
