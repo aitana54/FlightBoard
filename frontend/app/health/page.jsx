@@ -1,37 +1,32 @@
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? // p.ej. "http://host.docker.internal:4000" si usas Docker
-  'http://127.0.0.1:4000';
+import FlightsListClient from "../_components/FlightsListClient";
+export const revalidate = 60;
 
-async function getHealth() {
-  const res = await fetch(`${API_BASE}/health`, {
-    cache: 'no-store',
+const API =
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "http://localhost:4000";
+
+console.log(API);
+
+async function getFlights() {
+  const res = await fetch(`${API}/api/v1/flights`, {
+    next: { revalidate: 60 },
   });
 
   if (!res.ok) {
-    throw new Error('No se pudo obtener el estado del servidor');
+    throw new Error("Error obteniendo vuelos");
   }
 
   return res.json();
 }
 
-export default async function Home() {
-  const data = await getHealth();
+export default async function Page() {
+  const flights = await getFlights();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50 p-6">
-      <div className="max-w-md w-full bg-white shadow-md rounded-lg p-6 border border-gray-200">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-          Estado del servidor
-        </h1>
+    <main style={{ padding: "20px" }}>
+      <h1>Flights</h1>
 
-        <div className="text-sm text-gray-700 mb-4 text-center">
-          Endpoint: <code className="font-mono text-blue-600">/health</code>
-        </div>
-
-        <pre className="bg-gray-900 text-green-400 text-sm p-4 rounded-lg overflow-auto">
-          {JSON.stringify(data, null, 2)}
-        </pre>
-      </div>
+      <FlightsListClient initialFlights={flights.data ?? []} />
     </main>
   );
 }
