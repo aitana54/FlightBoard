@@ -17,6 +17,7 @@ export default function RegisterForm() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     setForm({
@@ -30,6 +31,7 @@ export default function RegisterForm() {
 
     setLoading(true);
     setError("");
+    setSuccess("");
 
     try {
       const response = await fetch(`${API}/api/v1/auth/register`,
@@ -48,10 +50,21 @@ export default function RegisterForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Error al registrar el usuario");
+        const message = data?.message || "Error al registrar el usuario. Revisa los datos e intenta de nuevo.";
+        throw new Error(message);
       }
 
+      const successMessage = data?.message || "Registrado correctamente.";
+      setSuccess(successMessage);
+      setForm({
+        name: "",
+        email: "",
+        password: "",
+        birthday: "",
+      });
+
       router.push("/login");
+
     } catch (err) {
       setError(err.message);
     } finally {
@@ -100,14 +113,17 @@ export default function RegisterForm() {
         required
       />
       {error && (
-        <p className="text-red-500">{error}
-        </p>
+        <p className="text-red-500">{error}</p>
+      )}
+
+      {success && (
+        <p className="text-green-500">{success}</p>
       )}
 
       <button
         type="submit"
         disabled={loading}
-        className="borderp-2">
+        className="border p-2">
         {loading ? "Registrando..." : "Registrarse"}
       </button>
     </form>
