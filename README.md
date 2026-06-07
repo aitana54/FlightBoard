@@ -7,3 +7,65 @@ Template para proyectos monorepo con **Nextjs**, **Express**, **MongoDB** y **Do
 
 - **Backend:** Para información completa sobre la API de backend, consulta la [documentación completa del backend](./backend/src/README.md).
 - **Frontend:** Para información sobre cómo lanzar y usar el frontend, consulta la [documentación del frontend](./frontend/README.md).
+
+## Descripción del proyecto
+FlightBoard es una aplicación web desarrollada con Next.js y Node.js que permite consultar información sobre vuelos, registrarse e iniciar sesión mediante autenticación de usuarios.
+
+La aplicación está dirigida a usuarios que deseen consultar vuelos disponibles y gestionar su cuenta de forma sencilla. Además, incorpora funcionalidades de autenticación y un sistema de soporte mediante chat en tiempo real.
+
+## Cómo ejecutar en local
+### Requisitos
+- Node.js 20 o superior
+- pnpm 10 o superior
+- Docker Desktop
+- Git
+
+### Clonar el repositorio
+```bash
+   git clone <url-del-repositorio>
+   cd <nombre-de-la-carpeta>
+   ```
+### Instalación de dependencias
+Backend:
+
+```
+cd backend
+pnpm install
+```
+Frontend:
+```
+cd frontend
+pnpm install
+```
+### Variables de entorno
+#### Backend (.env)
+Crear un archivo ``.env`` dentro de la carpeta ``backend``:
+
+PORT=4000
+MONGO_URI=mongodb://root:root@mongo:27017
+JWT_SECRET=your_secret_key
+
+
+#### Frontend (.env.local)
+Crear un archivo ``.env.local`` dentro de la carpeta ``frontend``:
+
+NEXT_PUBLIC_API_URL=http://localhost:4000
+
+También se recomienda incluir los archivos:
+
+- .env.example
+- .env.local.example
+
+con valores de ejemplo para facilitar la configuración del proyecto.
+
+
+### Arrancar la aplicación con Docker
+Desde la raíz del proyecto:
+
+``docker compose up --build``
+
+Servicios disponibles:
+
+- Frontend: http://localhost:3000
+- Backend: http://localhost:4000
+- Mongo Express: http://localhost:8081
