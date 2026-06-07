@@ -71,9 +71,8 @@ export class FlightService {
       projection,
       pagination
     );
-    if (!flights || flights.length === 0) {
-      logger.info('No flights found');
-      throw new AppError('No flights found', httpStatus.NOT_FOUND);
+    if (!flights) {
+      throw new AppError('Error fetching flights', httpStatus.INTERNAL_SERVER_ERROR);
     }
     return flights;
   };

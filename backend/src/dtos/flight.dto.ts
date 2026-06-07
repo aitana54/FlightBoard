@@ -16,6 +16,7 @@ export interface CreateFlightDto {
   origin: string;
   destination: string;
   time_departure: string;
+  status: string;
 }
 
 export interface UpdateFlightDto {

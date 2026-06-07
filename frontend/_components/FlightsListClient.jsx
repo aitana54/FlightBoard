@@ -1,25 +1,34 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
+import { useFlights } from "@/_contexts/FlightsContext";
 
 const API =
-  process.env.NEXT_PUBLIC_API_URL ??
-  "http://127.0.0.1:4000";
+  process.env.NEXT_PUBLIC_API_URL;
 
-export default function FlightsListClient({ initialFlights }) {
+export default function FlightsListClient() {
+  const { flights: contextFlights } = useFlights();
 
   const [search, setSearch] = useState("");
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
+  const [isClient, setIsClient] = useState(false);
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const filteredFlights = useMemo(() => {
-    const safeFlights = Array.isArray(initialFlights) ? initialFlights.map((flight) => ({
+    const safeFlights = Array.isArray(contextFlights) ? contextFlights.map((flight) => ({
       ...flight,
       id: flight.id || flight._id,
       }))
     : [];
+
+    if (!isClient) {
+      return safeFlights;
+    }
 
     return safeFlights.filter((flight) => {
 
@@ -34,7 +43,7 @@ export default function FlightsListClient({ initialFlights }) {
 
       return matchesSearch && matchesOrigin && matchesDestination;
     });
-  }, [initialFlights, search, origin, destination]);
+  }, [contextFlights, search, origin, destination, isClient]);
 
   return (
     <main className="p-6">

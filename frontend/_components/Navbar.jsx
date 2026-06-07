@@ -33,10 +33,6 @@ export default function Navbar() {
           </>
           ) : (
             <>
-              <Link href="/flights" className="link">
-                Flights
-              </Link>
-
               <button onClick={logout} className="button">
                 Cerrar Sesión
               </button>
